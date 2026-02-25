@@ -1,10 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../utils/constant";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 const Register = () => {
   const navigate = useNavigate();
-
+const user = JSON.parse(localStorage.getItem("user"));
+if(user){
+    return <Navigate to="/dashboard" replace />;
+}
   const handleRegister = async (e) => {
     e.preventDefault();
 
