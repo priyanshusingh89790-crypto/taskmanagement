@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "../utils/constant";
+import {Navigate} from "react-router-dom";
 
 const Dashboard = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -38,7 +39,9 @@ console.log(tasks);
     await axios.delete(`${BACKEND_URL}/tasks/${id}`);
     setTasks(tasks.filter(t => t._id !== id));
   };
-
+if(!user){
+  return <Navigate to="/" />;
+}
   return (
     <div className="p-6 max-w-xl mx-auto">
       <h1 className="text-3xl font-bold text-orange-500 mb-6">
